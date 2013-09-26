@@ -1,0 +1,34 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cheque.Core/BL/Check.cs">
+    <Files>
+      <File FileName="Cheque.Core/BL/Check.cs" Line="7" Column="3" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Cheque.Core" expanded="True">
+            <Node name="BL" expanded="True" />
+            <Node name="DAL" expanded="True" />
+            <Node name="DL" expanded="True">
+              <Node name="Database.cs" selected="True" />
+            </Node>
+          </Node>
+          <Node name="Cheque.GTK" expanded="True">
+            <Node name="UserInterface" expanded="True" />
+            <Node name="Screens" expanded="True">
+              <Node name="AddDialogs" expanded="True" />
+              <Node name="Home" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Cheque.GTK/Screens/AddDialogs/AddCheck.cs" line="131" offsetX="521" offsetY="1945" expression="check" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>
