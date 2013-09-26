@@ -1,20 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cheque.Core/BL/Check.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cheque.GTK/Screens/AddDialogs/AddCheck.cs">
     <Files>
-      <File FileName="Cheque.Core/BL/Check.cs" Line="7" Column="3" />
+      <File FileName="Cheque.Core/BL/CheckClass.cs" Line="47" Column="3" />
+      <File FileName="Cheque.GTK/Screens/AddDialogs/AddCheck.cs" Line="10" Column="32" />
+      <File FileName="Cheque.GTK/Screens/AddDialogs/AddCustomerDialog.cs" Line="56" Column="19" />
+      <File FileName="Untitled Sql Script.sql" Line="1" Column="25" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Cheque.Core" expanded="True">
             <Node name="BL" expanded="True" />
-            <Node name="DAL" expanded="True" />
-            <Node name="DL" expanded="True">
-              <Node name="Database.cs" selected="True" />
-            </Node>
           </Node>
-          <Node name="Cheque.GTK" expanded="True">
+          <Node name="Cheque.GTK" expanded="True" selected="True">
             <Node name="UserInterface" expanded="True" />
             <Node name="Screens" expanded="True">
               <Node name="AddDialogs" expanded="True" />
