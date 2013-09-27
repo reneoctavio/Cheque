@@ -26,6 +26,7 @@
 *.sql
 *.sqlite
 *.db3
+*.mdb
 
 # OS generated files #
 ######################

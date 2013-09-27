@@ -69,6 +69,8 @@
     <Compile Include="gtk-gui\Cheque.GTK.Screens.AddCustomerDialog.cs" />
     <Compile Include="Screens\AddDialogs\AddCheck.cs" />
     <Compile Include="gtk-gui\Cheque.GTK.Screens.AddCheck.cs" />
+    <Compile Include="Screens\Reports\CheckReport.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Screens.CheckReport.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -77,6 +79,7 @@
     <Folder Include="Screens\" />
     <Folder Include="Screens\Home\" />
     <Folder Include="Screens\AddDialogs\" />
+    <Folder Include="Screens\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cheque.Core\Cheque.Core.csproj">

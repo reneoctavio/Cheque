@@ -34,5 +34,11 @@ namespace Cheque.GTK.Screens
 			AddCustomerDialog addCustomerDialog = new AddCustomerDialog ();
 			addCustomerDialog.Show ();
 		}
+
+		protected void OnChecksActionActivated (object sender, EventArgs e)
+		{
+			CheckReport chkReport = new CheckReport ();
+			chkReport.Show ();
+		}
 	}
 }

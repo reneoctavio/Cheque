@@ -9,6 +9,11 @@ namespace Cheque.GTK.Screens
 		private global::Gtk.Action BankAction;
 		private global::Gtk.Action CheckAction;
 		private global::Gtk.Action CustomerAction;
+		private global::Gtk.Action UpdateAction;
+		private global::Gtk.Action RemoveAction;
+		private global::Gtk.Action Action;
+		private global::Gtk.Action ReportsAction;
+		private global::Gtk.Action ChecksAction;
 		private global::Gtk.VBox containerVbox;
 		private global::Gtk.MenuBar menubar;
 
@@ -30,6 +35,21 @@ namespace Cheque.GTK.Screens
 			this.CustomerAction = new global::Gtk.Action ("CustomerAction", global::Mono.Unix.Catalog.GetString ("Cliente"), null, null);
 			this.CustomerAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Cliente");
 			w1.Add (this.CustomerAction, null);
+			this.UpdateAction = new global::Gtk.Action ("UpdateAction", global::Mono.Unix.Catalog.GetString ("Atualizar"), null, null);
+			this.UpdateAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Atualizar");
+			w1.Add (this.UpdateAction, null);
+			this.RemoveAction = new global::Gtk.Action ("RemoveAction", global::Mono.Unix.Catalog.GetString ("Remover"), null, null);
+			this.RemoveAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remover");
+			w1.Add (this.RemoveAction, null);
+			this.Action = new global::Gtk.Action ("Action", null, null, null);
+			this.Action.ShortLabel = "";
+			w1.Add (this.Action, null);
+			this.ReportsAction = new global::Gtk.Action ("ReportsAction", global::Mono.Unix.Catalog.GetString ("Relatórios"), null, null);
+			this.ReportsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Relatórios");
+			w1.Add (this.ReportsAction, null);
+			this.ChecksAction = new global::Gtk.Action ("ChecksAction", global::Mono.Unix.Catalog.GetString ("Cheques"), null, null);
+			this.ChecksAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Cheques");
+			w1.Add (this.ChecksAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "Cheque.GTK.Screens.MainWindow";
@@ -41,7 +61,7 @@ namespace Cheque.GTK.Screens
 			this.containerVbox.Name = "containerVbox";
 			this.containerVbox.Spacing = 6;
 			// Container child containerVbox.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='menubar'><menu name='AddAction' action='AddAction'><menuitem name='BankAction' action='BankAction'/><menuitem name='CheckAction' action='CheckAction'/><menuitem name='CustomerAction' action='CustomerAction'/></menu></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name='menubar'><menu name='AddAction' action='AddAction'><menuitem name='BankAction' action='BankAction'/><menuitem name='CheckAction' action='CheckAction'/><menuitem name='CustomerAction' action='CustomerAction'/></menu><menu name='UpdateAction' action='UpdateAction'/><menu name='RemoveAction' action='RemoveAction'/><menu name='ReportsAction' action='ReportsAction'><menuitem name='ChecksAction' action='ChecksAction'/></menu></menubar></ui>");
 			this.menubar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar")));
 			this.menubar.Name = "menubar";
 			this.containerVbox.Add (this.menubar);
@@ -58,6 +78,7 @@ namespace Cheque.GTK.Screens
 			this.BankAction.Activated += new global::System.EventHandler (this.OnBankActionActivated);
 			this.CheckAction.Activated += new global::System.EventHandler (this.OnCheckActionActivated);
 			this.CustomerAction.Activated += new global::System.EventHandler (this.OnCustomerActionActivated);
+			this.ChecksAction.Activated += new global::System.EventHandler (this.OnChecksActionActivated);
 		}
 	}
 }

@@ -526,4 +526,3 @@ namespace Cheque.GTK.Screens
 		}
 	}
 }
-

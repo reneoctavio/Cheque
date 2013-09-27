@@ -1,5 +1,6 @@
 using System;
 using Cheque.BL;
+using System.Collections.Generic;
 
 namespace Cheque.DAL
 {
@@ -44,11 +45,21 @@ namespace Cheque.DAL
 		{
 			return DL.Database.GetCustomer (customerID);
 		}
+
+		public static List<Customer> GetCustomers ()
+		{
+			return (List<Customer>)DL.Database.GetItems<Customer> ();
+		}
 		#endregion
 		#region Check
 		public static int AddCheck (CheckClass check)
 		{
 			return DL.Database.SaveItem<CheckClass> (check);
+		}
+
+		public static List<CheckClass> GetChecks ()
+		{
+			return (List<CheckClass>)DL.Database.GetItems<CheckClass> ();
 		}
 		#endregion
 	}

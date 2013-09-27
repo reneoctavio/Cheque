@@ -17,6 +17,10 @@ namespace Cheque.BL
 		[Unique]
 		[XmlAttribute("banu")]
 		public string BankNumber { get; set; }
+
+		[Unique]
+		[XmlAttribute("pCNPJ")]
+		public string PartCNPJ { get; set; }
 		// These are only populated on the client-side, when a single bank is requested
 		// Branches
 		[XmlElement("bn")]

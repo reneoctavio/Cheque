@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Text;
 
 namespace Cheque.BL
 {
@@ -124,6 +125,31 @@ namespace Cheque.BL
 		public static string ConvertDateToString (DateTime date)
 		{
 			return date.ToString ("dd/MM/yyyy");
+		}
+
+		/// <summary>
+		/// Remove diacritics from strings 
+		/// </summary>
+		/// <example>
+		/// input: "Příliš žluťoučký kůň úpěl ďábelské ódy."
+		/// result: "Prilis zlutoucky kun upel dabelske ody."
+		/// </example>
+		/// <param name="s">String containg diacritics</param>
+		/// <remarks>found at http://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net</remarks>
+		/// <returns>string without accents</returns>
+
+		public static string RemoveDiacritics (this string s)
+		{
+			string stFormD = s.Normalize (NormalizationForm.FormD);
+			StringBuilder sb = new StringBuilder ();
+
+			for (int ich = 0; ich < stFormD.Length; ich++) {
+				UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory (stFormD [ich]);
+				if (uc != UnicodeCategory.NonSpacingMark) {
+					sb.Append (stFormD [ich]);
+				}
+			}
+			return (sb.ToString ().Normalize (NormalizationForm.FormC));
 		}
 	}
 }
