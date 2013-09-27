@@ -80,6 +80,7 @@
     <Folder Include="Screens\Home\" />
     <Folder Include="Screens\AddDialogs\" />
     <Folder Include="Screens\Reports\" />
+    <Folder Include="Widgets\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cheque.Core\Cheque.Core.csproj">

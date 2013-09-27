@@ -137,7 +137,6 @@ namespace Cheque.BL
 		/// <param name="s">String containg diacritics</param>
 		/// <remarks>found at http://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net</remarks>
 		/// <returns>string without accents</returns>
-
 		public static string RemoveDiacritics (this string s)
 		{
 			string stFormD = s.Normalize (NormalizationForm.FormD);
@@ -150,6 +149,23 @@ namespace Cheque.BL
 				}
 			}
 			return (sb.ToString ().Normalize (NormalizationForm.FormC));
+		}
+
+		/// <summary>
+		/// Compare two numeric strings
+		/// </summary>
+		/// <returns>Greater than 0 if s1 is greater than s2. 0 if they are equal. Less than zero otherwise.</returns>
+		/// <param name="s1">String 1.</param>
+		/// <param name="s2">String 2.</param>
+		public static int NumericStringSort (string s1, string s2)
+		{
+			if (s1.Length > s2.Length) {
+				return 1;
+			} else if (s1.Length < s2.Length) {
+				return -1;
+			} else {
+				return s1.CompareTo (s2);
+			}
 		}
 	}
 }

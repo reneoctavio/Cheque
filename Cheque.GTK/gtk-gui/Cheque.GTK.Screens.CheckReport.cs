@@ -17,11 +17,9 @@ namespace Cheque.GTK.Screens
 		private global::Gtk.HBox hbox4;
 		private global::Gtk.Label lblStartDate;
 		private global::Gtk.Entry entryStartDate;
-		private global::Gtk.Button buttonSDateCal;
 		private global::Gtk.HBox hbox5;
 		private global::Gtk.Label lblEndDate;
 		private global::Gtk.Entry entryEndDate;
-		private global::Gtk.Button buttonEDateCal;
 		private global::Gtk.HBox hbox9;
 		private global::Gtk.VSeparator vseparator1;
 		private global::Gtk.VBox vbox7;
@@ -140,22 +138,11 @@ namespace Cheque.GTK.Screens
 			this.hbox4.Add (this.entryStartDate);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.entryStartDate]));
 			w8.Position = 1;
-			// Container child hbox4.Gtk.Box+BoxChild
-			this.buttonSDateCal = new global::Gtk.Button ();
-			this.buttonSDateCal.CanFocus = true;
-			this.buttonSDateCal.Name = "buttonSDateCal";
-			this.buttonSDateCal.UseUnderline = true;
-			this.buttonSDateCal.Label = global::Mono.Unix.Catalog.GetString ("Calendário");
-			this.hbox4.Add (this.buttonSDateCal);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.buttonSDateCal]));
-			w9.Position = 2;
+			this.vbox4.Add (this.hbox4);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox4]));
+			w9.Position = 0;
 			w9.Expand = false;
 			w9.Fill = false;
-			this.vbox4.Add (this.hbox4);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox4]));
-			w10.Position = 0;
-			w10.Expand = false;
-			w10.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.hbox5 = new global::Gtk.HBox ();
 			this.hbox5.Name = "hbox5";
@@ -165,10 +152,10 @@ namespace Cheque.GTK.Screens
 			this.lblEndDate.Name = "lblEndDate";
 			this.lblEndDate.LabelProp = global::Mono.Unix.Catalog.GetString ("Data final:       ");
 			this.hbox5.Add (this.lblEndDate);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblEndDate]));
-			w11.Position = 0;
-			w11.Expand = false;
-			w11.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblEndDate]));
+			w10.Position = 0;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.entryEndDate = new global::Gtk.Entry ();
 			this.entryEndDate.CanFocus = true;
@@ -176,32 +163,21 @@ namespace Cheque.GTK.Screens
 			this.entryEndDate.IsEditable = true;
 			this.entryEndDate.InvisibleChar = '●';
 			this.hbox5.Add (this.entryEndDate);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.entryEndDate]));
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.entryEndDate]));
+			w11.Position = 1;
+			this.vbox4.Add (this.hbox5);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox5]));
 			w12.Position = 1;
-			// Container child hbox5.Gtk.Box+BoxChild
-			this.buttonEDateCal = new global::Gtk.Button ();
-			this.buttonEDateCal.CanFocus = true;
-			this.buttonEDateCal.Name = "buttonEDateCal";
-			this.buttonEDateCal.UseUnderline = true;
-			this.buttonEDateCal.Label = global::Mono.Unix.Catalog.GetString ("Calendário");
-			this.hbox5.Add (this.buttonEDateCal);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonEDateCal]));
+			w12.Expand = false;
+			w12.Fill = false;
+			this.vbox3.Add (this.vbox4);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox4]));
 			w13.Position = 2;
 			w13.Expand = false;
 			w13.Fill = false;
-			this.vbox4.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox5]));
-			w14.Position = 1;
-			w14.Expand = false;
-			w14.Fill = false;
-			this.vbox3.Add (this.vbox4);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox4]));
-			w15.Position = 2;
-			w15.Expand = false;
-			w15.Fill = false;
 			this.hbox1.Add (this.vbox3);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox3]));
-			w16.Position = 0;
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox3]));
+			w14.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.hbox9 = new global::Gtk.HBox ();
 			this.hbox9.Name = "hbox9";
@@ -210,10 +186,10 @@ namespace Cheque.GTK.Screens
 			this.vseparator1 = new global::Gtk.VSeparator ();
 			this.vseparator1.Name = "vseparator1";
 			this.hbox9.Add (this.vseparator1);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.vseparator1]));
-			w17.Position = 0;
-			w17.Expand = false;
-			w17.Fill = false;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.vseparator1]));
+			w15.Position = 0;
+			w15.Expand = false;
+			w15.Fill = false;
 			// Container child hbox9.Gtk.Box+BoxChild
 			this.vbox7 = new global::Gtk.VBox ();
 			this.vbox7.Name = "vbox7";
@@ -227,10 +203,10 @@ namespace Cheque.GTK.Screens
 			this.lblBank.Name = "lblBank";
 			this.lblBank.LabelProp = global::Mono.Unix.Catalog.GetString ("Número do Banco:");
 			this.hbox10.Add (this.lblBank);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.lblBank]));
-			w18.Position = 0;
-			w18.Expand = false;
-			w18.Fill = false;
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.lblBank]));
+			w16.Position = 0;
+			w16.Expand = false;
+			w16.Fill = false;
 			// Container child hbox10.Gtk.Box+BoxChild
 			this.entryBankNum = new global::Gtk.Entry ();
 			this.entryBankNum.CanFocus = true;
@@ -238,13 +214,13 @@ namespace Cheque.GTK.Screens
 			this.entryBankNum.IsEditable = true;
 			this.entryBankNum.InvisibleChar = '●';
 			this.hbox10.Add (this.entryBankNum);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.entryBankNum]));
-			w19.Position = 1;
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.entryBankNum]));
+			w17.Position = 1;
 			this.vbox7.Add (this.hbox10);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hbox10]));
-			w20.Position = 0;
-			w20.Expand = false;
-			w20.Fill = false;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hbox10]));
+			w18.Position = 0;
+			w18.Expand = false;
+			w18.Fill = false;
 			// Container child vbox7.Gtk.Box+BoxChild
 			this.hbox11 = new global::Gtk.HBox ();
 			this.hbox11.Name = "hbox11";
@@ -254,10 +230,10 @@ namespace Cheque.GTK.Screens
 			this.lblBranchNum.Name = "lblBranchNum";
 			this.lblBranchNum.LabelProp = global::Mono.Unix.Catalog.GetString ("Número da Agência");
 			this.hbox11.Add (this.lblBranchNum);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox11 [this.lblBranchNum]));
-			w21.Position = 0;
-			w21.Expand = false;
-			w21.Fill = false;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox11 [this.lblBranchNum]));
+			w19.Position = 0;
+			w19.Expand = false;
+			w19.Fill = false;
 			// Container child hbox11.Gtk.Box+BoxChild
 			this.entryBranchNum = new global::Gtk.Entry ();
 			this.entryBranchNum.CanFocus = true;
@@ -265,13 +241,13 @@ namespace Cheque.GTK.Screens
 			this.entryBranchNum.IsEditable = true;
 			this.entryBranchNum.InvisibleChar = '●';
 			this.hbox11.Add (this.entryBranchNum);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox11 [this.entryBranchNum]));
-			w22.Position = 1;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox11 [this.entryBranchNum]));
+			w20.Position = 1;
 			this.vbox7.Add (this.hbox11);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hbox11]));
-			w23.Position = 1;
-			w23.Expand = false;
-			w23.Fill = false;
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hbox11]));
+			w21.Position = 1;
+			w21.Expand = false;
+			w21.Fill = false;
 			// Container child vbox7.Gtk.Box+BoxChild
 			this.hbox13 = new global::Gtk.HBox ();
 			this.hbox13.Name = "hbox13";
@@ -284,8 +260,8 @@ namespace Cheque.GTK.Screens
 			this.radioBtnCashed.UseUnderline = true;
 			this.radioBtnCashed.Group = new global::GLib.SList (global::System.IntPtr.Zero);
 			this.hbox13.Add (this.radioBtnCashed);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.radioBtnCashed]));
-			w24.Position = 0;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.radioBtnCashed]));
+			w22.Position = 0;
 			// Container child hbox13.Gtk.Box+BoxChild
 			this.radioBtnReturned = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Retornado"));
 			this.radioBtnReturned.CanFocus = true;
@@ -294,8 +270,8 @@ namespace Cheque.GTK.Screens
 			this.radioBtnReturned.UseUnderline = true;
 			this.radioBtnReturned.Group = this.radioBtnCashed.Group;
 			this.hbox13.Add (this.radioBtnReturned);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.radioBtnReturned]));
-			w25.Position = 1;
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.radioBtnReturned]));
+			w23.Position = 1;
 			// Container child hbox13.Gtk.Box+BoxChild
 			this.radioBtnAll = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Todos"));
 			this.radioBtnAll.CanFocus = true;
@@ -304,24 +280,24 @@ namespace Cheque.GTK.Screens
 			this.radioBtnAll.UseUnderline = true;
 			this.radioBtnAll.Group = this.radioBtnCashed.Group;
 			this.hbox13.Add (this.radioBtnAll);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.radioBtnAll]));
-			w26.Position = 2;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.radioBtnAll]));
+			w24.Position = 2;
 			this.vbox7.Add (this.hbox13);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hbox13]));
-			w27.Position = 2;
-			w27.Expand = false;
-			w27.Fill = false;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hbox13]));
+			w25.Position = 2;
+			w25.Expand = false;
+			w25.Fill = false;
 			this.hbox9.Add (this.vbox7);
-			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.vbox7]));
-			w28.Position = 1;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.vbox7]));
+			w26.Position = 1;
 			this.hbox1.Add (this.hbox9);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.hbox9]));
-			w29.Position = 1;
+			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.hbox9]));
+			w27.Position = 1;
 			this.vbox2.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox1]));
-			w30.Position = 0;
-			w30.Expand = false;
-			w30.Fill = false;
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox1]));
+			w28.Position = 0;
+			w28.Expand = false;
+			w28.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -332,17 +308,17 @@ namespace Cheque.GTK.Screens
 			this.treeview.Name = "treeview";
 			this.GtkScrolledWindow.Add (this.treeview);
 			this.vbox2.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.GtkScrolledWindow]));
-			w32.Position = 1;
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.GtkScrolledWindow]));
+			w30.Position = 1;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.lblTotal = new global::Gtk.Label ();
 			this.lblTotal.Name = "lblTotal";
 			this.lblTotal.LabelProp = global::Mono.Unix.Catalog.GetString ("Total: R$ 0,00");
 			this.vbox2.Add (this.lblTotal);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.lblTotal]));
-			w33.Position = 2;
-			w33.Expand = false;
-			w33.Fill = false;
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.lblTotal]));
+			w31.Position = 2;
+			w31.Expand = false;
+			w31.Fill = false;
 			this.Add (this.vbox2);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

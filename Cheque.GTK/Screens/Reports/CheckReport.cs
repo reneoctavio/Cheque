@@ -32,6 +32,8 @@ namespace Cheque.GTK.Screens
 		private List<CheckClass> checkList;
 		// Filter
 		private Gtk.TreeModelFilter filter;
+		// Sorter
+		private Gtk.TreeModelSort sorter;
 
 		public CheckReport () : 
 				base(Gtk.WindowType.Toplevel)
@@ -51,7 +53,7 @@ namespace Cheque.GTK.Screens
 			radioBtnReturned.Toggled += OnFilterEntryTextChanged;
 			radioBtnAll.Toggled += OnFilterEntryTextChanged;
 
-
+			// Create cell renderer
 			idCell = new Gtk.CellRendererText ();
 			custNameCell = new Gtk.CellRendererText ();
 			numCell = new Gtk.CellRendererText ();
@@ -61,6 +63,7 @@ namespace Cheque.GTK.Screens
 			dueDateCell = new Gtk.CellRendererText ();
 			valueCell = new Gtk.CellRendererText ();
 
+			// Create treeview columns
 			idCol = new Gtk.TreeViewColumn ();
 			custNameCol = new Gtk.TreeViewColumn ();
 			numCol = new Gtk.TreeViewColumn ();
@@ -70,6 +73,7 @@ namespace Cheque.GTK.Screens
 			dueDateCol = new Gtk.TreeViewColumn ();
 			valueCol = new Gtk.TreeViewColumn ();
 
+			// Column titles
 			idCol.Title = "Identificação";
 			custNameCol.Title = "Nome do Cliente";
 			numCol.Title = "Número";
@@ -79,6 +83,7 @@ namespace Cheque.GTK.Screens
 			dueDateCol.Title = "Vencimento";
 			valueCol.Title = "Valor";
 
+			// Put column in the beginning
 			idCol.PackStart (idCell, true);
 			custNameCol.PackStart (custNameCell, true);
 			numCol.PackStart (numCell, true);
@@ -88,16 +93,17 @@ namespace Cheque.GTK.Screens
 			dueDateCol.PackStart (dueDateCell, true);
 			valueCol.PackStart (valueCell, true);
 
+			// Create a list store with all the check information
 			checkPropsList = new Gtk.ListStore (typeof(CheckClass), typeof(string));
-
-			//customerList = DataManager.GetCustomers ();
+			// Create a list with all checks objects
 			checkList = DataManager.GetChecks ();
-
+			// Add all checks and customer name to the list store
 			foreach (CheckClass check in checkList) {
 				string name = (DAL.DataManager.GetCustomer (check.CustomerID)).Name;
 				checkPropsList.AppendValues (check, name);
 			}
 
+			// Set renderers while data changes
 			idCol.SetCellDataFunc (idCell, new Gtk.TreeCellDataFunc (RenderCustID));
 			custNameCol.SetCellDataFunc (custNameCell, new Gtk.TreeCellDataFunc (RenderCustName));
 			numCol.SetCellDataFunc (numCell, new Gtk.TreeCellDataFunc (RenderNumber));
@@ -107,6 +113,7 @@ namespace Cheque.GTK.Screens
 			dueDateCol.SetCellDataFunc (dueDateCell, new Gtk.TreeCellDataFunc (RenderDueDate));
 			valueCol.SetCellDataFunc (valueCell, new Gtk.TreeCellDataFunc (RenderValue));
 
+			// Add columns to the treeview 
 			this.treeview.AppendColumn (idCol);
 			this.treeview.AppendColumn (custNameCol);
 			this.treeview.AppendColumn (numCol);
@@ -116,6 +123,7 @@ namespace Cheque.GTK.Screens
 			this.treeview.AppendColumn (dueDateCol);
 			this.treeview.AppendColumn (valueCol);
 
+			// Expand all columns to fill the screen
 			idCol.Expand = true;
 			custNameCol.Expand = true;
 			numCol.Expand = true;
@@ -125,12 +133,100 @@ namespace Cheque.GTK.Screens
 			dueDateCol.Expand = true;
 			valueCol.Expand = true;
 
-			filter = new Gtk.TreeModelFilter (checkPropsList, null);
+			// Add sorting option to columns
+			idCol.SortColumnId = 0;
+			custNameCol.SortColumnId = 1;
+			numCol.SortColumnId = 2;
+			bankCol.SortColumnId = 3;
+			branchCol.SortColumnId = 4;
+			serialCol.SortColumnId = 5;
+			dueDateCol.SortColumnId = 6;
+			valueCol.SortColumnId = 7;
 
+			// Add filter for searching
+			filter = new Gtk.TreeModelFilter (checkPropsList, null);
 			filter.VisibleFunc = new Gtk.TreeModelFilterVisibleFunc (FilterTree);
 
-			treeview.Model = filter;
-			//treeview.Model = checkPropsList;
+			// Configure sorter and the sort funcions
+			sorter = new Gtk.TreeModelSort (filter);
+			sorter.SetSortFunc (0, IDSort);
+			sorter.SetSortFunc (1, CustNameSort);
+			sorter.SetSortFunc (2, NumSort);
+			sorter.SetSortFunc (3, BankSort);
+			sorter.SetSortFunc (4, BranchSort);
+			sorter.SetSortFunc (5, SerialSort);
+			sorter.SetSortFunc (6, DueDateSort);
+			sorter.SetSortFunc (7, ValueSort);
+
+			// Set the treeview model
+			treeview.Model = sorter;
+
+			// Update Total
+			lblTotal.Text = "Total: " + String.Format ("{0:C}", calcTotal ());
+		}
+
+		private int IDSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
+		{
+			CheckClass check1 = (CheckClass)model.GetValue (a, 0);
+			CheckClass check2 = (CheckClass)model.GetValue (b, 0);
+
+			return Formatter.NumericStringSort (check1.CustomerID, check2.CustomerID);
+		}
+
+		private int CustNameSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
+		{
+			string name1 = (string)model.GetValue (a, 1);
+			string name2 = (string)model.GetValue (b, 1);
+
+			return String.Compare (name1, name2, true, CultureInfo.CurrentCulture);
+		}
+
+		private int NumSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
+		{
+			CheckClass check1 = (CheckClass)model.GetValue (a, 0);
+			CheckClass check2 = (CheckClass)model.GetValue (b, 0);
+
+			return Formatter.NumericStringSort (check1.Number, check2.Number);
+		}
+
+		private int BankSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
+		{
+			CheckClass check1 = (CheckClass)model.GetValue (a, 0);
+			CheckClass check2 = (CheckClass)model.GetValue (b, 0);
+
+			return Formatter.NumericStringSort (check1.BankNumber, check2.BankNumber);
+		}
+
+		private int BranchSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
+		{
+			CheckClass check1 = (CheckClass)model.GetValue (a, 0);
+			CheckClass check2 = (CheckClass)model.GetValue (b, 0);
+
+			return Formatter.NumericStringSort (check1.BranchNumber, check2.BranchNumber);
+		}
+
+		private int SerialSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
+		{
+			CheckClass check1 = (CheckClass)model.GetValue (a, 0);
+			CheckClass check2 = (CheckClass)model.GetValue (b, 0);
+
+			return Formatter.NumericStringSort (check1.Serial, check2.Serial);
+		}
+
+		private int DueDateSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
+		{
+			CheckClass check1 = (CheckClass)model.GetValue (a, 0);
+			CheckClass check2 = (CheckClass)model.GetValue (b, 0);
+
+			return (check1.DueDate <= check2.DueDate) ? -1 : 1;
+		}
+
+		private int ValueSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
+		{
+			CheckClass check1 = (CheckClass)model.GetValue (a, 0);
+			CheckClass check2 = (CheckClass)model.GetValue (b, 0);
+
+			return (check1.Value <= check2.Value) ? -1 : 1;
 		}
 
 		private void RenderCustID (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
@@ -201,17 +297,16 @@ namespace Cheque.GTK.Screens
 		{
 			// Since the filter text changed, tell the filter to re-determine which rows to display
 			filter.Refilter ();
+			// Update the total
+			lblTotal.Text = "Total: " + String.Format ("{0:C}", calcTotal ());
 		}
 
 		private bool FilterTree (Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
-			DateTime startDate, endDate;
-			DateTimeFormatInfo formatDate = new DateTimeFormatInfo { ShortDatePattern = "dd/MM/yyyy" };
-			startDate = DateTime.Parse (Constants.MIN_CHECK_DATE, formatDate);
-			endDate = DateTime.Now;
-
 			CheckClass check = (CheckClass)model.GetValue (iter, 0);
 			string name = (string)model.GetValue (iter, 1);
+
+			// Parsing customer name
 			string entryNameFormatted = "";
 			if ((name != null) || (name == "")) {
 				name = Formatter.RemoveDiacritics (name.ToLower ());
@@ -219,17 +314,26 @@ namespace Cheque.GTK.Screens
 			}
 
 			// Parsing the date
+			DateTime startDate, endDate;
+			DateTimeFormatInfo formatDate = new DateTimeFormatInfo { ShortDatePattern = "dd/MM/yyyy" };
+			startDate = DateTime.Parse (Constants.MIN_CHECK_DATE, formatDate);
+			endDate = DateTime.Now;
+			bool allDates = true;
+
 			if (!(entryStartDate.Text == "")) {
-				startDate = DateTime.Parse (entryStartDate.Text, formatDate);
+				if (!(DateTime.TryParse (entryStartDate.Text, formatDate, DateTimeStyles.None, out startDate)))
+					startDate = DateTime.Parse (Constants.MIN_CHECK_DATE, formatDate);
 			}
 			if (!(entryEndDate.Text == "")) {
-				endDate = DateTime.Parse (entryEndDate.Text, formatDate);
+				if ((DateTime.TryParse (entryEndDate.Text, formatDate, DateTimeStyles.None, out endDate)))
+					allDates = false;
 			}
 
+			// Selecting valid entries
 			if ((entryName.Text == "") || (name.Contains (entryNameFormatted))) {
 				if ((entryID.Text == "") || (check.CustomerID.Contains (entryID.Text))) {
-					if ((entryStartDate.Text == "") || (check.DueDate >= startDate)) {
-						if ((entryEndDate.Text == "") || (check.DueDate <= endDate)) {
+					if (check.DueDate >= startDate) {
+						if (allDates || check.DueDate <= endDate) {
 							if ((entryBankNum.Text == "") || (check.BankNumber.Contains (entryBankNum.Text))) {
 								if ((entryBranchNum.Text == "") || (check.BranchNumber.Contains (entryBranchNum.Text))) {
 									if (radioBtnAll.Active) {
@@ -250,6 +354,29 @@ namespace Cheque.GTK.Screens
 				}
 			}
 			return false;
+		}
+
+		/// <summary>
+		/// Calculates the total based on the filter
+		/// </summary>
+		/// <returns>The total.</returns>
+		private decimal calcTotal ()
+		{
+			Gtk.TreeIter iter;
+			decimal total = 0.00m;
+
+			sorter.GetIterFirst (out iter);
+
+			do {
+				CheckClass check = (CheckClass)sorter.GetValue (iter, 0);
+
+				if ((check != null) && (!check.isBlank ())) {
+					total += check.Value;
+				}
+
+			} while (sorter.IterNext(ref iter));
+
+			return total;
 		}
 	}
 }

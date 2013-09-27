@@ -42,7 +42,6 @@ namespace Cheque.GTK.Screens
 			this.RemoveAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remover");
 			w1.Add (this.RemoveAction, null);
 			this.Action = new global::Gtk.Action ("Action", null, null, null);
-			this.Action.ShortLabel = "";
 			w1.Add (this.Action, null);
 			this.ReportsAction = new global::Gtk.Action ("ReportsAction", global::Mono.Unix.Catalog.GetString ("Relatórios"), null, null);
 			this.ReportsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Relatórios");
