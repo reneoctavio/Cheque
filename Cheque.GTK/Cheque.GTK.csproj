@@ -71,9 +71,9 @@
     <Compile Include="gtk-gui\Cheque.GTK.Screens.AddCheck.cs" />
     <Compile Include="Screens\Reports\CheckReport.cs" />
     <Compile Include="gtk-gui\Cheque.GTK.Screens.CheckReport.cs" />
-    <Compile Include="Screens\InformationDialogs\CheckInfo.cs" />
     <Compile Include="Screens\Reports\CheckNotebook.cs" />
     <Compile Include="gtk-gui\Cheque.GTK.Screens.CheckNotebook.cs" />
+    <Compile Include="Screens\InformationDialogs\CheckInfo.cs" />
     <Compile Include="gtk-gui\Cheque.GTK.Screens.CheckInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

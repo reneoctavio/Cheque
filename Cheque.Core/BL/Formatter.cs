@@ -189,23 +189,13 @@ namespace Cheque.BL
 		}
 
 		/// <summary>
-		/// Given a formatted CPF, return a numeric one.
+		/// Given a formatted CNPJ or CPF, return a numeric one.
 		/// </summary>
-		/// <returns>The numeric CPF.</returns>
-		/// <param name="cpf">Formatted CPF.</param>
-		public static string GetNumericCPF (string cpf)
+		/// <returns>The numeric CNPJ or CPF.</returns>
+		/// <param name="idString">Formatted CNPJ or CPF.</param>
+		public static string GetNumericID (string idString)
 		{
-			return cpf.Replace (".", "").Replace ("-", "");
-		}
-
-		/// <summary>
-		/// Given a formatted CNPJ, return a numeric one.
-		/// </summary>
-		/// <returns>The numeric CNPJ.</returns>
-		/// <param name="cpf">Formatted CNPJ.</param>
-		public static string GetNumericCNPJ (string cnpj)
-		{
-			return cnpj.Replace (".", "").Replace ("-", "").Replace ("/", "");
+			return idString.Replace (".", "").Replace ("-", "").Replace ("/", "");
 		}
 	}
 }

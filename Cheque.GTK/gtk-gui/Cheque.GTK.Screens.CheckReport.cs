@@ -256,6 +256,7 @@ namespace Cheque.GTK.Screens
 			this.radioBtnCashed = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Compensado"));
 			this.radioBtnCashed.CanFocus = true;
 			this.radioBtnCashed.Name = "radioBtnCashed";
+			this.radioBtnCashed.Active = true;
 			this.radioBtnCashed.DrawIndicator = true;
 			this.radioBtnCashed.UseUnderline = true;
 			this.radioBtnCashed.Group = new global::GLib.SList (global::System.IntPtr.Zero);

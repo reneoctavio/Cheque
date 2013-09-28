@@ -65,8 +65,8 @@ namespace Cheque.GTK.Screens
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 440;
-			this.DefaultHeight = 384;
+			this.DefaultWidth = 470;
+			this.DefaultHeight = 352;
 			this.Show ();
 		}
 	}
