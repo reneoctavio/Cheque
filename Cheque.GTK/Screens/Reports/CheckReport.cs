@@ -27,8 +27,7 @@ namespace Cheque.GTK.Screens
 		private Gtk.TreeViewColumn serialCol;
 		private Gtk.TreeViewColumn dueDateCol;
 		private Gtk.TreeViewColumn valueCol;
-		// Lists
-		private List<Customer> customerList;
+		// List
 		private List<CheckClass> checkList;
 		// Filter
 		private Gtk.TreeModelFilter filter;
@@ -160,9 +159,23 @@ namespace Cheque.GTK.Screens
 
 			// Set the treeview model
 			treeview.Model = sorter;
+			treeview.Activate ();
 
 			// Update Total
 			lblTotal.Text = "Total: " + String.Format ("{0:C}", calcTotal ());
+
+			treeview.RowActivated += OnDoubleClickedRow;
+		}
+
+		private void OnDoubleClickedRow (object o, Gtk.RowActivatedArgs args)
+		{
+			Gtk.TreeIter iter;
+			sorter.GetIter (out iter, args.Path);
+
+			CheckClass check = (CheckClass)sorter.GetValue (iter, 0);
+
+			CheckNotebook chkBook = new CheckNotebook (check);
+			chkBook.Show ();
 		}
 
 		private int IDSort (Gtk.TreeModel model, Gtk.TreeIter a, Gtk.TreeIter b)
@@ -233,7 +246,11 @@ namespace Cheque.GTK.Screens
 		{
 			CheckClass check = (CheckClass)model.GetValue (iter, 0);
 			if (check != null) {
-				(cell as Gtk.CellRendererText).Text = check.CustomerID;
+				if (Formatter.IsCPF (check.CustomerID)) {
+					(cell as Gtk.CellRendererText).Text = Formatter.FormatCPF (check.CustomerID);
+				} else if (Formatter.IsCNPJ (check.CustomerID)) {
+					(cell as Gtk.CellRendererText).Text = Formatter.FormatCNPJ (check.CustomerID);
+				}
 			}
 		}
 

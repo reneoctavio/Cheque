@@ -167,6 +167,46 @@ namespace Cheque.BL
 				return s1.CompareTo (s2);
 			}
 		}
+
+		/// <summary>
+		/// Given a numeric CPF, format it.
+		/// </summary>
+		/// <returns>The Formatted CPF.</returns>
+		/// <param name="cpf">Numeric CPF.</param>
+		public static string FormatCPF (string cpf)
+		{
+			return cpf.Substring (0, 3) + "." + cpf.Substring (3, 3) + "." + cpf.Substring (6, 3) + "-" + cpf.Substring (9, 2);
+		}
+
+		/// <summary>
+		/// Given a numeric CNPJ, format it.
+		/// </summary>
+		/// <returns>The Formatted CNPJ.</returns>
+		/// <param name="cpf">Numeric CNPJ.</param>
+		public static string FormatCNPJ (string cnpj)
+		{
+			return cnpj.Substring (0, 2) + "." + cnpj.Substring (2, 3) + "." + cnpj.Substring (5, 3) + "/" + cnpj.Substring (8, 4) + "-" + cnpj.Substring (12, 2);
+		}
+
+		/// <summary>
+		/// Given a formatted CPF, return a numeric one.
+		/// </summary>
+		/// <returns>The numeric CPF.</returns>
+		/// <param name="cpf">Formatted CPF.</param>
+		public static string GetNumericCPF (string cpf)
+		{
+			return cpf.Replace (".", "").Replace ("-", "");
+		}
+
+		/// <summary>
+		/// Given a formatted CNPJ, return a numeric one.
+		/// </summary>
+		/// <returns>The numeric CNPJ.</returns>
+		/// <param name="cpf">Formatted CNPJ.</param>
+		public static string GetNumericCNPJ (string cnpj)
+		{
+			return cnpj.Replace (".", "").Replace ("-", "").Replace ("/", "");
+		}
 	}
 }
 
