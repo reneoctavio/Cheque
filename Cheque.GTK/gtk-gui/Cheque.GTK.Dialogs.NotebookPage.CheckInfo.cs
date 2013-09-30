@@ -426,7 +426,6 @@ namespace Cheque.GTK.Dialogs.NotebookPage
 			this.entryID.TextDeleted += new global::Gtk.TextDeletedHandler (this.OnEntryIDTextDeleted);
 			this.entryID.TextInserted += new global::Gtk.TextInsertedHandler (this.OnEntryIDTextInserted);
 			this.checkBtnCashed.Toggled += new global::System.EventHandler (this.OnCheckBtnCashedToggled);
-			this.checkBtnOverdue.Toggled += new global::System.EventHandler (this.OnCheckBtnOverdueToggled);
 			this.btnEdit.Clicked += new global::System.EventHandler (this.OnBtnEditClicked);
 			this.btnSave.Clicked += new global::System.EventHandler (this.OnBtnSaveClicked);
 			this.btnDelete.Clicked += new global::System.EventHandler (this.OnBtnDeleteClicked);

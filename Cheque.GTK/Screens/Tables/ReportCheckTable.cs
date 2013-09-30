@@ -85,7 +85,7 @@ namespace Cheque.GTK.Tables
 			Dialogs.CheckNotebook chkBook = new Dialogs.CheckNotebook (check);
 			chkBook.Show ();
 
-			chkBook.GetCheckInfo ().DeletedCheck += (object sender, EventArgs e) => UpdateModel ();
+			chkBook.GetCheckInfo ().ChangedCheck += (object sender, EventArgs e) => UpdateModel ();
 		}
 		//
 		// Tree Iter Compare Functions

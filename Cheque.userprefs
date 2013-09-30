@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cheque.GTK/Screens/Home/MainWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cheque.GTK/Screens/Dialogs/CheckDialogs/CheckInfo.cs">
     <Files>
-      <File FileName="Cheque.GTK/Screens/Home/MainWindow.cs" Line="13" Column="21" />
-      <File FileName="Cheque.GTK/Screens/Tables/CheckTableView.cs" Line="1" Column="1" />
-      <File FileName="Cheque.GTK/Screens/Tables/ReportCheckTable.cs" Line="1" Column="1" />
-      <File FileName="Cheque.GTK/Screens/Tables/AddCheckTable.cs" Line="1" Column="1" />
+      <File FileName="Cheque.GTK/Screens/Tables/ReportCheckTable.cs" Line="89" Column="4" />
+      <File FileName="Cheque.GTK/Screens/Dialogs/CheckDialogs/CheckNotebook.cs" Line="12" Column="4" />
+      <File FileName="Cheque.GTK/Screens/Dialogs/AddCustomerDialog.cs" Line="93" Column="38" />
+      <File FileName="Cheque.GTK/Screens/Tables/AddCheckTable.cs" Line="285" Column="35" />
+      <File FileName="Cheque.GTK/Screens/Dialogs/CheckDialogs/CheckInfo.cs" Line="150" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

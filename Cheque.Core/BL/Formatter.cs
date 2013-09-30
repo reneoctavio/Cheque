@@ -197,6 +197,29 @@ namespace Cheque.BL
 		{
 			return idString.Replace (".", "").Replace ("-", "").Replace ("/", "");
 		}
+
+		/// <summary>
+		/// Gets the value without currency.
+		/// </summary>
+		/// <returns><c>true</c>, if value without currency was gotten, <c>false</c> otherwise.</returns>
+		/// <param name="valueWithCurrency">Value with currency.</param>
+		/// <param name="value">Value.</param>
+		public static bool GetValueWithoutCurrency (string valueWithCurrency, out Decimal value)
+		{
+			bool isParsed = false;
+			string[] splittedString = valueWithCurrency.Split ();
+
+			// Splitting for removing the $ string and getting the number only
+			if (splittedString.Length == 2) {
+				isParsed = Decimal.TryParse (splittedString [1], out value);
+				if (!isParsed)
+					isParsed = Decimal.TryParse (splittedString [0], out value);
+			} else {
+				isParsed = Decimal.TryParse (splittedString [0], out value);
+			}
+
+			return isParsed;
+		}
 	}
 }
 

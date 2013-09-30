@@ -116,7 +116,10 @@ namespace Cheque.GTK.Tables
 				// Move to next cell
 				checktableview.SetCursorOnCell (treepath, nextColumn, nextCell, true);
 			} else if (!text.Equals ("")) {
-				InvalidEntryDialog ("Número de cheque inválido!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Número de cheque inválido!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 			}
 		}
 
@@ -139,7 +142,10 @@ namespace Cheque.GTK.Tables
 				// Move to next cell
 				checktableview.SetCursorOnCell (treepath, nextColumn, nextCell, true);
 			} else if (!text.Equals ("")) {
-				InvalidEntryDialog ("Número de banco inválido!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Número de banco inválido!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 			}
 		}
 
@@ -162,7 +168,10 @@ namespace Cheque.GTK.Tables
 				// Move to next cell
 				checktableview.SetCursorOnCell (treepath, nextColumn, nextCell, true);
 			} else if (!text.Equals ("")) {
-				InvalidEntryDialog ("Número de agência inválido!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Número de agência inválido!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 			}
 		}
 
@@ -206,7 +215,10 @@ namespace Cheque.GTK.Tables
 				// Move to next cell
 				checktableview.SetCursorOnCell (treepath, nextColumn, nextCell, true);
 			} else {
-				InvalidEntryDialog ("Data inválida!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Data inválida!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 			}
 		}
 
@@ -222,20 +234,8 @@ namespace Cheque.GTK.Tables
 
 			BL.CheckClass check = (BL.CheckClass)checkPropsList.GetValue (iter, 0);
 
-			decimal value;
-			bool isParsed = false;
-			string[] splittedString = text.Split ();
-
-			// Splitting for removing the $ string and getting the number only
-			if (splittedString.Length == 2) {
-				isParsed = Decimal.TryParse (splittedString [1], out value);
-				if (!isParsed)
-					isParsed = Decimal.TryParse (splittedString [0], out value);
-			} else {
-				isParsed = Decimal.TryParse (splittedString [0], out value);
-			}
-
-			if (isParsed) {
+			Decimal value;
+			if (BL.Formatter.GetValueWithoutCurrency (text, out value)) {
 				check.Value = value;
 
 				// If row is filled and there is no other row below, add one
@@ -254,7 +254,10 @@ namespace Cheque.GTK.Tables
 				}
 
 			} else {
-				InvalidEntryDialog ("Valor inválido!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Valor inválido!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 			}
 		}
 		//

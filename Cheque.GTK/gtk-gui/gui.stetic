@@ -681,7 +681,6 @@
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
-                        <signal name="Toggled" handler="OnCheckBtnOverdueToggled" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>

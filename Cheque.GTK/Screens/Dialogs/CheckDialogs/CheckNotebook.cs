@@ -9,7 +9,7 @@ namespace Cheque.GTK.Dialogs
 		{
 			this.Build ();
 			notebook1.PrevPage ();
-			checkinfo.setInfos (check);
+			checkinfo.UpdateInfo (check);
 			checkinfo.ShowAll ();
 		}
 
