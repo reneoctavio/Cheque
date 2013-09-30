@@ -51,8 +51,8 @@ namespace Cheque.GTK.Tables
 					} else if (Formatter.IsCNPJ (check.CustomerID)) {
 						(cell as Gtk.CellRendererText).Text = Formatter.FormatCNPJ (check.CustomerID);
 						return;
-					}
-				}
+					} 
+				} 
 			}
 			(cell as Gtk.CellRendererText).Text = "";
 		}

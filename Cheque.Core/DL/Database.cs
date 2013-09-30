@@ -172,13 +172,14 @@ namespace Cheque.DL
 		/// <param name="bankNumber">Bank number.</param>
 		/// <param name="branchNumber">Branch number.</param>
 		/// <param name="customerID">Customer ID.</param>
-		public static CheckClass GetCheck (string checkNumber, string bankNumber, string branchNumber, string customerID)
+		public static CheckClass GetCheck (string checkNumber, string bankNumber, string branchNumber, string serial, string customerID)
 		{
 			lock (locker) {
 				CheckClass check = (from chk in me.Table<CheckClass> ()
 				               where ((chk.Number == checkNumber)
 					&& (chk.BankNumber == bankNumber)
 					&& (chk.BranchNumber == branchNumber)
+					&& (chk.Serial == serial)
 					&& (chk.CustomerID == customerID))
 				               select chk).FirstOrDefault ();
 

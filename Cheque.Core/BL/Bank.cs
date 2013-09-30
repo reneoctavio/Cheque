@@ -1,5 +1,3 @@
-using System.Xml;
-using System.Xml.Serialization;
 using System;
 using System.Collections.Generic;
 using Cheque.DL.SQLite;
@@ -11,39 +9,30 @@ namespace Cheque.BL
 	/// </summary>
 	public partial class Bank : Contracts.BusinessEntityBase
 	{
-		[XmlAttribute("na")]
 		public string Name { get; set; }
 
-		[Unique]
-		[XmlAttribute("banu")]
+		[Indexed(Name = "BankNumInd", Order = 1, Unique = true)]
 		public string BankNumber { get; set; }
 
 		[Unique]
-		[XmlAttribute("pCNPJ")]
 		public string PartCNPJ { get; set; }
 		// These are only populated on the client-side, when a single bank is requested
 		// Branches
-		[XmlElement("bn")]
 		[Cheque.DL.SQLite.Ignore]
 		public List<string> BranchNumbers { get; set; }
 
-		[XmlIgnore]
 		[Cheque.DL.SQLite.Ignore]
 		public List<Branch> Branches { get; set; }
 		// Customers
-		[XmlElement("cids")]
 		[Cheque.DL.SQLite.Ignore]
 		public List<string> CustomerIDs { get; set; }
 
-		[XmlIgnore]
 		[Cheque.DL.SQLite.Ignore]
 		public List<Customer> Customers { get; set; }
 		// Checks
-		[XmlElement("cn")]
 		[Cheque.DL.SQLite.Ignore]
 		public List<string> CheckNumbers { get; set; }
 
-		[XmlIgnore]
 		[Cheque.DL.SQLite.Ignore]
 		public List<CheckClass> Checks { get; set; }
 

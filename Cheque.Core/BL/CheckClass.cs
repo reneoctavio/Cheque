@@ -1,41 +1,35 @@
 using System;
-using System.Xml.Serialization;
+using Cheque.DL.SQLite;
 
 namespace Cheque.BL
 {
 	public partial class CheckClass : Contracts.BusinessEntityBase
 	{
-		[XmlElement("n")]
+		[Indexed(Name = "ListingCheck", Order = 5, Unique = true)]
 		public string Number { get; set; }
 
-		[XmlElement("banu")]
+		[Indexed(Name = "ListingCheck", Order = 2, Unique = true)]
 		public string BankNumber { get; set; }
 
-		[XmlElement("brnu")]
+		[Indexed(Name = "ListingCheck", Order = 3, Unique = true)]
 		public string BranchNumber { get; set; }
 
-		[XmlElement("ser")]
+		[Indexed(Name = "ListingCheck", Order = 4, Unique = true)]
 		public string Serial { get; set; }
 
-		[XmlElement("cid")]
+		[Indexed(Name = "ListingCheck", Order = 1, Unique = true)]
 		public string CustomerID { get; set; }
 
-		[XmlElement("isd")]
 		public DateTime IssueDate { get; set; }
 
-		[XmlElement("dd")]
 		public DateTime DueDate { get; set; }
 
-		[XmlElement("cad")]
 		public DateTime CashDate { get; set; }
 
-		[XmlElement("csh")]
 		public bool IsCashed { get; set; }
 
-		[XmlElement("csho")]
 		public bool CashedOverdue { get; set; }
 
-		[XmlElement("va")]
 		public decimal Value { get; set; }
 
 		public CheckClass ()

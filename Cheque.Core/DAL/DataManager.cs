@@ -63,6 +63,11 @@ namespace Cheque.DAL
 
 		}
 
+		public static CheckClass GetCheck (CheckClass check)
+		{
+			return DL.Database.GetCheck (check.Number, check.BankNumber, check.BranchNumber, check.Serial, check.CustomerID);
+		}
+
 		public static int DeleteCheck (CheckClass check)
 		{
 			return DL.Database.DeleteItem<CheckClass> (check);

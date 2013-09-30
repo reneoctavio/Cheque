@@ -90,8 +90,16 @@ namespace Cheque.GTK.Tables
 				if (result == Gtk.ResponseType.Yes) {
 					dialog.Destroy ();
 					Dialogs.AddCustomerDialog addCustDia = new Dialogs.AddCustomerDialog ();
+					addCustDia.AddedCustomer += (object sender, Cheque.GTK.Dialogs.AddCustomerEventArgs e) => {
+						check.CustomerID = BL.Formatter.GetNumericID (e.CustomerID);
+					};
 					addCustDia.GetEntryID ().Text = text;
 					addCustDia.Run ();
+					customer = DAL.DataManager.GetCustomer (check.CustomerID);
+					if (customer != null) {
+						checkPropsList.SetValue (iter, 1, customer.Name);
+						checktableview.SetCursorOnCell (treepath, nextColumn, nextCell, true);
+					}
 				}
 				dialog.Destroy ();
 			}
@@ -238,8 +246,8 @@ namespace Cheque.GTK.Tables
 			if (BL.Formatter.GetValueWithoutCurrency (text, out value)) {
 				check.Value = value;
 
-				// If row is filled and there is no other row below, add one
-				if (isRowFilled (treepath)) {
+				// If row is filled, there is no equal check and there is no other row below, add one
+				if (isRowFilled (treepath) && (DAL.DataManager.GetCheck (check) == null)) {
 
 					if (!checkPropsList.IterNext (ref iter)) {
 						// Update Total
@@ -251,6 +259,11 @@ namespace Cheque.GTK.Tables
 						checkPropsList.IterNext (ref iter);
 						checktableview.SetCursorOnCell (checkPropsList.GetPath (iter), nextColumn, nextCell, true);
 					}
+				} else {
+					Gtk.MessageDialog dialog = InvalidEntryDialog ("Cheque já existe ou dados não estão completos!");
+					Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+					if (result == Gtk.ResponseType.Ok)
+						dialog.Destroy ();
 				}
 
 			} else {
@@ -295,28 +308,40 @@ namespace Cheque.GTK.Tables
 			// Check valid customer
 			BL.Customer customer = DAL.DataManager.GetCustomer (check.CustomerID);
 			if (customer == null) {
-				InvalidEntryDialog ("Cliente inexistente!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Cliente inexistente!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 				isFilled = false;
 			}
 
 			// Check valid number
 			String formattedNumber = BL.Formatter.ZeroPad (check.Number, BL.Constants.LENGTH_NUM_CHECK);
 			if (formattedNumber == null) {
-				InvalidEntryDialog ("Número de cheque inválido!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Número de cheque inválido!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 				isFilled = false;
 			}
 
 			// Check valid bank number 
 			formattedNumber = BL.Formatter.ZeroPad (check.BankNumber, BL.Constants.LENGTH_NUM_BANK);
 			if (formattedNumber == null) {
-				InvalidEntryDialog ("Número de banco inválido!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Número de banco inválido!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 				isFilled = false;
 			}
 
 			// Check valid branch number
 			formattedNumber = BL.Formatter.ZeroPad (check.BranchNumber, BL.Constants.LENGTH_NUM_BRANCH);
 			if (formattedNumber == null) {
-				InvalidEntryDialog ("Número de agência inválido!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Número de agência inválido!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 				isFilled = false;
 			}
 
@@ -325,7 +350,10 @@ namespace Cheque.GTK.Tables
 			DateTimeFormatInfo formatDate = new DateTimeFormatInfo { ShortDatePattern = "dd/MM/yyyy" };
 			DateTime.TryParse (BL.Constants.MIN_CHECK_DATE, formatDate, DateTimeStyles.None, out dt);
 			if (check.DueDate < dt) {
-				InvalidEntryDialog ("Data inválida!").Run ();
+				Gtk.MessageDialog dialog = InvalidEntryDialog ("Data inválida!");
+				Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+				if (result == Gtk.ResponseType.Ok)
+					dialog.Destroy ();
 				isFilled = false;
 			}
 
@@ -354,28 +382,39 @@ namespace Cheque.GTK.Tables
 		protected void OnBtnSaveClicked (object sender, EventArgs e)
 		{
 			Gtk.TreeIter iter;
-
 			checkPropsList.GetIterFirst (out iter);
 
 			do {
 				BL.CheckClass check = (BL.CheckClass)checkPropsList.GetValue (iter, 0);
-
 				if ((check != null) && (!check.isBlank ())) {
-					DAL.DataManager.AddCheck (check);
-
-					// Add bank if it does not exist
-					if (DAL.DataManager.GetBank (check.BankNumber) == null) {
-						DAL.DataManager.AddBank (check.BankNumber, null);
-					}
-
-					// Add branch if it does not exist
-					if (DAL.DataManager.GetBranch (check.BranchNumber, check.BankNumber) == null) {
-						DAL.DataManager.AddBranch (check.BranchNumber, check.BankNumber);
+					if (DAL.DataManager.GetCheck (check) == null) {
+						DAL.DataManager.AddCheck (check);
+					} else {
+						RemoveAddedChecks ();
+						Gtk.MessageDialog dialog = InvalidEntryDialog ("Há cheques repetidos!");
+						Gtk.ResponseType result = (Gtk.ResponseType)dialog.Run ();
+						if (result == Gtk.ResponseType.Ok)
+							dialog.Destroy ();
+						return;
 					}
 				}
-
 			} while (checkPropsList.IterNext(ref iter));
 			this.Destroy ();
+		}
+
+		private void RemoveAddedChecks ()
+		{
+			Gtk.TreeIter iter;
+			checkPropsList.GetIterFirst (out iter);
+
+			do {
+				BL.CheckClass check = (BL.CheckClass)checkPropsList.GetValue (iter, 0);
+				if ((check != null) && (!check.isBlank ())) {
+					if (DAL.DataManager.GetCheck (check) != null) {
+						DAL.DataManager.DeleteCheck (check);
+					}
+				}
+			} while (checkPropsList.IterNext(ref iter));
 		}
 
 		protected void OnBtnCancelClicked (object sender, EventArgs e)
