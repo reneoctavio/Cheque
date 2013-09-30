@@ -2,10 +2,21 @@ using System;
 using Cheque;
 using Gtk;
 
-namespace Cheque.GTK.Screens
+namespace Cheque.GTK.Dialogs
 {
 	public partial class AddCustomerDialog : Gtk.Dialog
 	{
+		// A delegate type for hooking up new customer notification
+		public delegate void AddedCustomerEventHandler (object sender, AddCustomerEventArgs e);
+		// An event that clients can use to be notified whenever a new customer is added
+		public event AddedCustomerEventHandler AddedCustomer;
+		// Invoke the event; called whenever a customer is added
+		protected virtual void OnAdditionCustomer (AddCustomerEventArgs e)
+		{
+			if (AddedCustomer != null)
+				AddedCustomer (this, e);
+		}
+
 		public AddCustomerDialog ()
 		{
 			this.Build ();
@@ -30,8 +41,8 @@ namespace Cheque.GTK.Screens
 					md.Run ();
 					md.Destroy ();
 				} else {
-
 					DAL.DataManager.AddCustomer (this.entryID.Text, this.entryName.Text, BL.Customer.TypeID.CPF);
+					OnAdditionCustomer (new AddCustomerEventArgs (this.entryID.Text));
 					this.Destroy ();
 				}
 			} else if (BL.Formatter.IsCNPJ (this.entryID.Text)) {
@@ -45,6 +56,7 @@ namespace Cheque.GTK.Screens
 					md.Destroy ();
 				} else {
 					DAL.DataManager.AddCustomer (this.entryID.Text, this.entryName.Text, BL.Customer.TypeID.CNPJ);
+					OnAdditionCustomer (new AddCustomerEventArgs (this.entryID.Text));
 					this.Destroy ();
 				}
 			} else {
@@ -71,6 +83,16 @@ namespace Cheque.GTK.Screens
 		protected void OnButtonCancelClicked (object sender, EventArgs e)
 		{
 			this.Destroy ();
+		}
+	}
+
+	public class AddCustomerEventArgs : EventArgs
+	{
+		public string CustomerID { get; private set; }
+
+		public AddCustomerEventArgs (string customer)
+		{
+			CustomerID = customer;
 		}
 	}
 }

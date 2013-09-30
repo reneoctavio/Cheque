@@ -60,6 +60,12 @@ namespace Cheque.DAL
 		public static List<CheckClass> GetChecks ()
 		{
 			return (List<CheckClass>)DL.Database.GetItems<CheckClass> ();
+
+		}
+
+		public static int DeleteCheck (CheckClass check)
+		{
+			return DL.Database.DeleteItem<CheckClass> (check);
 		}
 		#endregion
 	}

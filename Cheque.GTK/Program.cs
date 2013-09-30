@@ -8,7 +8,7 @@ namespace Cheque.GTK
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-			Screens.MainWindow win = new Screens.MainWindow ();
+			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();
 		}

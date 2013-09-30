@@ -81,11 +81,18 @@ namespace Cheque.DL
 				me.Commit ();
 			}
 		}
-
+		/*
 		public static int DeleteItem<T> (int id) where T : BL.Contracts.IBusinessEntity, new()
 		{
 			lock (locker) {
 				return me.Delete<T> (new T () { ID = id });
+			}
+		}
+		*/
+		public static int DeleteItem<T> (T item) where T : BL.Contracts.IBusinessEntity, new()
+		{
+			lock (locker) {
+				return me.Delete (item);
 			}
 		}
 

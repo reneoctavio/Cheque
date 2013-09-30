@@ -1,6 +1,6 @@
 using System;
 
-namespace Cheque.GTK.Screens
+namespace Cheque.GTK.Dialogs
 {
 	public partial class CheckNotebook : Gtk.Window
 	{
@@ -11,6 +11,11 @@ namespace Cheque.GTK.Screens
 			notebook1.PrevPage ();
 			checkinfo.setInfos (check);
 			checkinfo.ShowAll ();
+		}
+
+		public NotebookPage.CheckInfo GetCheckInfo ()
+		{
+			return checkinfo;
 		}
 	}
 }

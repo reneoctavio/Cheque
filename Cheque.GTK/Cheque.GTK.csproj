@@ -61,30 +61,29 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screens\Home\MainWindow.cs" />
-    <Compile Include="gtk-gui\Cheque.GTK.Screens.MainWindow.cs" />
-    <Compile Include="Screens\AddDialogs\AddBankDialog.cs" />
-    <Compile Include="gtk-gui\Cheque.GTK.Screens.AddBankDialog.cs" />
-    <Compile Include="Screens\AddDialogs\AddCustomerDialog.cs" />
-    <Compile Include="gtk-gui\Cheque.GTK.Screens.AddCustomerDialog.cs" />
-    <Compile Include="Screens\AddDialogs\AddCheck.cs" />
-    <Compile Include="gtk-gui\Cheque.GTK.Screens.AddCheck.cs" />
-    <Compile Include="Screens\Reports\CheckReport.cs" />
-    <Compile Include="gtk-gui\Cheque.GTK.Screens.CheckReport.cs" />
-    <Compile Include="Screens\Reports\CheckNotebook.cs" />
-    <Compile Include="gtk-gui\Cheque.GTK.Screens.CheckNotebook.cs" />
-    <Compile Include="Screens\InformationDialogs\CheckInfo.cs" />
-    <Compile Include="gtk-gui\Cheque.GTK.Screens.CheckInfo.cs" />
+    <Compile Include="Screens\Tables\CheckTableView.cs" />
+    <Compile Include="Screens\Tables\TableColumn.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.MainWindow.cs" />
+    <Compile Include="Screens\Tables\AddCheckTable.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Tables.AddCheckTable.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Dialogs.AddCustomerDialog.cs" />
+    <Compile Include="Screens\Tables\ReportCheckTable.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Tables.ReportCheckTable.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Dialogs.CheckNotebook.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Dialogs.NotebookPage.CheckInfo.cs" />
+    <Compile Include="Screens\Dialogs\AddCustomerDialog.cs" />
+    <Compile Include="Screens\Dialogs\CheckDialogs\CheckInfo.cs" />
+    <Compile Include="Screens\Dialogs\CheckDialogs\CheckNotebook.cs" />
+    <Compile Include="MainWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Delegates\" />
     <Folder Include="Controllers\" />
     <Folder Include="Screens\" />
-    <Folder Include="Screens\Home\" />
-    <Folder Include="Screens\AddDialogs\" />
-    <Folder Include="Screens\Reports\" />
-    <Folder Include="Screens\InformationDialogs\" />
+    <Folder Include="Screens\Tables\" />
+    <Folder Include="Screens\Dialogs\" />
+    <Folder Include="Screens\Dialogs\CheckDialogs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cheque.Core\Cheque.Core.csproj">

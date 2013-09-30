@@ -3,16 +3,30 @@ using Cheque.BL;
 using Cheque.DAL;
 using Gtk;
 
-namespace Cheque.GTK.Screens
+namespace Cheque.GTK.Dialogs.NotebookPage
 {
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class CheckInfo : Gtk.Bin
 	{
 		private CheckClass check;
+		public MessageDialog deleteDialog;
+		// A delegate type for hooking up change notifications.
+		public delegate void DeletedCheckEventHandler (object sender, EventArgs e);
 
 		public CheckInfo ()
 		{
+			createDeleteDialog ();
 			this.Build ();
+
+		}
+		// An event that clients can use to be notified whenever the
+		// elements of the list change.
+		public event DeletedCheckEventHandler DeletedCheck;
+		// Invoke the Changed event; called whenever list changes
+		protected virtual void OnDeletedCheck (EventArgs e)
+		{
+			if (DeletedCheck != null)
+				DeletedCheck (this, e);
 		}
 
 		public void setInfos (CheckClass chk)
@@ -69,11 +83,6 @@ namespace Cheque.GTK.Screens
 		protected void OnBtnSaveClicked (object sender, EventArgs e)
 		{
 
-		}
-
-		protected void OnBtnCloseClicked (object sender, EventArgs e)
-		{
-			this.ParentWindow.Destroy ();
 		}
 
 		protected void OnBtnEditClicked (object sender, EventArgs e)
@@ -156,7 +165,7 @@ namespace Cheque.GTK.Screens
 
 			if (result == ResponseType.Yes) {
 				md.Destroy ();
-				AddCustomerDialog addCustDia = new AddCustomerDialog ();
+				Dialogs.AddCustomerDialog addCustDia = new Dialogs.AddCustomerDialog ();
 				addCustDia.GetEntryID ().Text = Formatter.GetNumericID (entryID.Text);
 				ResponseType ans = (ResponseType)addCustDia.Run ();
 
@@ -181,6 +190,32 @@ namespace Cheque.GTK.Screens
 		protected void OnCheckBtnOverdueToggled (object sender, EventArgs e)
 		{
 			//throw new NotImplementedException ();
+		}
+
+		protected void OnBtnDeleteClicked (object sender, EventArgs e)
+		{
+			ResponseType result = (ResponseType)deleteDialog.Run ();
+
+			if (result == ResponseType.Yes) {
+				DataManager.DeleteCheck (check);
+				OnDeletedCheck (EventArgs.Empty);
+				deleteDialog.Destroy ();
+				this.ParentWindow.Destroy ();
+			}
+			deleteDialog.Destroy ();
+		}
+
+		protected void OnBtnCloseClicked (object sender, EventArgs e)
+		{
+			this.ParentWindow.Destroy ();
+		}
+
+		private void createDeleteDialog ()
+		{
+			deleteDialog = new MessageDialog (null, 
+			                                  DialogFlags.DestroyWithParent,
+			                                  MessageType.Question, 
+			                                  ButtonsType.YesNo, "Quer mesmo deletar este cheque?");
 		}
 	}
 }
