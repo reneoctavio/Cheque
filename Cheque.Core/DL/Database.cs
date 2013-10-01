@@ -19,6 +19,7 @@ namespace Cheque.DL
 			CreateTable<Branch> ();
 			CreateTable<CheckClass> ();
 			CreateTable<Customer> ();
+			CreateTable<BL.Password.Password> ();
 		}
 
 		static Database ()

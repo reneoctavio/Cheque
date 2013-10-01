@@ -17,7 +17,7 @@ namespace Cheque.GTK.Dialogs
 			// Widget Cheque.GTK.Dialogs.CheckNotebook
 			this.Name = "Cheque.GTK.Dialogs.CheckNotebook";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Propiedades do Cheque");
-			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 			// Container child Cheque.GTK.Dialogs.CheckNotebook.Gtk.Container+ContainerChild
 			this.notebook1 = new global::Gtk.Notebook ();
 			this.notebook1.CanFocus = true;

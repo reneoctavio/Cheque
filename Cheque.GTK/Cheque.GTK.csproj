@@ -75,6 +75,12 @@
     <Compile Include="Screens\Dialogs\CheckDialogs\CheckInfo.cs" />
     <Compile Include="Screens\Dialogs\CheckDialogs\CheckNotebook.cs" />
     <Compile Include="MainWindow.cs" />
+    <Compile Include="Screens\Dialogs\PasswordDialogs\AddPassword.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Dialogs.AddPassword.cs" />
+    <Compile Include="Screens\Dialogs\PasswordDialogs\RequestPassword.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Dialogs.RequestPassword.cs" />
+    <Compile Include="Screens\Dialogs\PasswordDialogs\ChangePassword.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Dialogs.ChangePassword.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -84,6 +90,7 @@
     <Folder Include="Screens\Tables\" />
     <Folder Include="Screens\Dialogs\" />
     <Folder Include="Screens\Dialogs\CheckDialogs\" />
+    <Folder Include="Screens\Dialogs\PasswordDialogs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cheque.Core\Cheque.Core.csproj">

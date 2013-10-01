@@ -14,12 +14,6 @@
         <property name="Label" translatable="yes">Adicionar</property>
         <property name="ShortLabel" translatable="yes">Adicionar</property>
       </action>
-      <action id="BankAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Banco</property>
-        <property name="ShortLabel" translatable="yes">Banco</property>
-        <signal name="Activated" handler="OnBankActionActivated" />
-      </action>
       <action id="CheckAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Cheque</property>
@@ -31,16 +25,6 @@
         <property name="Label" translatable="yes">Cliente</property>
         <property name="ShortLabel" translatable="yes">Cliente</property>
         <signal name="Activated" handler="OnCustomerActionActivated" />
-      </action>
-      <action id="UpdateAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Atualizar</property>
-        <property name="ShortLabel" translatable="yes">Atualizar</property>
-      </action>
-      <action id="RemoveAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Remover</property>
-        <property name="ShortLabel" translatable="yes">Remover</property>
       </action>
       <action id="Action">
         <property name="Type">Action</property>
@@ -56,6 +40,17 @@
         <property name="Label" translatable="yes">Cheques</property>
         <property name="ShortLabel" translatable="yes">Cheques</property>
         <signal name="Activated" handler="OnChecksActionActivated" />
+      </action>
+      <action id="ModifyAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Alterar</property>
+        <property name="ShortLabel" translatable="yes">Alterar</property>
+      </action>
+      <action id="PasswordAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Senha</property>
+        <property name="ShortLabel" translatable="yes">Senha</property>
+        <signal name="Activated" handler="OnPasswordActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -78,6 +73,9 @@
               <node type="Menu" action="ReportsAction">
                 <node type="Menuitem" action="ChecksAction" />
               </node>
+              <node type="Menu" action="ModifyAction">
+                <node type="Menuitem" action="PasswordAction" />
+              </node>
             </node>
           </widget>
           <packing>
@@ -96,7 +94,7 @@
   <widget class="Gtk.Dialog" id="Cheque.GTK.Dialogs.AddCustomerDialog" design-size="400 115">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Adicionar Cliente</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">Center</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -250,7 +248,7 @@
   <widget class="Gtk.Window" id="Cheque.GTK.Dialogs.CheckNotebook" design-size="470 352">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Propiedades do Cheque</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">Center</property>
     <child>
       <widget class="Gtk.Notebook" id="notebook1">
         <property name="MemberName" />
@@ -1301,6 +1299,317 @@
           <packing>
             <property name="Position">2</property>
             <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="Cheque.GTK.Dialogs.AddPassword" design-size="400 136">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Criar senha</property>
+    <property name="WindowPosition">Center</property>
+    <child>
+      <widget class="Gtk.VBox" id="vbox2">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <child>
+          <widget class="Gtk.Label" id="lblMessage">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Digite sua nova senha abaixo:</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="entryPasswd">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblTypeAgain">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Digite sua senha novamente:</property>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Entry" id="entryPasswdAgain">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="IsEditable">True</property>
+                <property name="InvisibleChar">●</property>
+                <signal name="TextDeleted" handler="OnEntryPasswdAgainTextDeleted" />
+                <signal name="TextInserted" handler="OnEntryPasswdAgainTextInserted" />
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.CheckButton" id="checkBtnSamePass">
+                <property name="MemberName" />
+                <property name="Sensitive">False</property>
+                <property name="CanFocus">True</property>
+                <property name="Label" translatable="yes">Iguais</property>
+                <property name="DrawIndicator">True</property>
+                <property name="HasLabel">True</property>
+                <property name="UseUnderline">True</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">3</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="btnAccept">
+            <property name="MemberName" />
+            <property name="Sensitive">False</property>
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Adicionar</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="OnBtnAcceptClicked" />
+          </widget>
+          <packing>
+            <property name="Position">4</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="Cheque.GTK.Dialogs.RequestPassword" design-size="400 88">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Digite a senha</property>
+    <property name="WindowPosition">Center</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="lblEnterPasswd">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Digite a senha abaixo:</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="entryPassword">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="OnButtonOkClicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="Cheque.GTK.Dialogs.ChangePassword" design-size="400 168">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Modificar Senha</property>
+    <property name="WindowPosition">Center</property>
+    <property name="Buttons">2</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="lblMessage1">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Entre com sua antiga senha:</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="entryOldPasswd">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+            <signal name="TextDeleted" handler="OnEntryOldPasswdTextDeleted" />
+            <signal name="TextInserted" handler="OnEntryOldPasswdTextInserted" />
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblMessage2">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Entre com sua nova senha:</property>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="entryNewPasswd1">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="Position">3</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblMessage3">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Digite de novo sua nova senha:</property>
+          </widget>
+          <packing>
+            <property name="Position">4</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="entryNewPasswd2">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+            <signal name="TextDeleted" handler="OnEntryNewPasswd2TextDeleted" />
+            <signal name="TextInserted" handler="OnEntryNewPasswd2TextInserted" />
+          </widget>
+          <packing>
+            <property name="Position">5</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">2</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonCancel">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-cancel</property>
+            <property name="ResponseId">-6</property>
+            <signal name="Clicked" handler="OnButtonCancelClicked" />
+            <property name="label">gtk-cancel</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="OnButtonOkClicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

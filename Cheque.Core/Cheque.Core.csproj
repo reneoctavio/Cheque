@@ -52,6 +52,8 @@
     <Compile Include="DAL\DataManager.cs" />
     <Compile Include="BL\CheckClass.cs" />
     <Compile Include="BL\FixImportDB.cs" />
+    <Compile Include="BL\Crypto.cs" />
+    <Compile Include="BL\Password.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

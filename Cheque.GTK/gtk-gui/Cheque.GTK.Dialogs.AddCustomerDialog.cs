@@ -21,7 +21,7 @@ namespace Cheque.GTK.Dialogs
 			// Widget Cheque.GTK.Dialogs.AddCustomerDialog
 			this.Name = "Cheque.GTK.Dialogs.AddCustomerDialog";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Adicionar Cliente");
-			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 			// Internal child Cheque.GTK.Dialogs.AddCustomerDialog.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";

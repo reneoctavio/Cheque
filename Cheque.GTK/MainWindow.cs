@@ -13,18 +13,34 @@ namespace Cheque.GTK
 			this.Maximize ();
 			mainFrame = new Frame ();
 			containerVbox.Add (mainFrame);
+
+			SetMenuSensitivity (false);
+			BL.Password.Password passwd = DAL.DataManager.GetPassword ();
+			if (passwd == null) {
+				Dialogs.AddPassword dialog = new Cheque.GTK.Dialogs.AddPassword ();
+				dialog.SavedPassword += (object sender, EventArgs e) => {
+					SetMenuSensitivity (true);
+				};
+				dialog.Show ();
+			} else {
+				Dialogs.RequestPassword dialog = new Cheque.GTK.Dialogs.RequestPassword ();
+				dialog.VerifiedPassword += (object sender, EventArgs e) => {
+					SetMenuSensitivity (true);
+				};
+				dialog.Show ();
+			}
+		}
+
+		private void SetMenuSensitivity (bool sensitivity)
+		{
+			menubar.Sensitive = sensitivity;
+			ShowAll ();
 		}
 
 		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 		{
 			Application.Quit ();
 			a.RetVal = true;
-		}
-
-		protected void OnBankActionActivated (object sender, EventArgs e)
-		{
-			//AddBankDialog addBankDialog = new AddBankDialog ();
-			//addBankDialog.Show ();
 		}
 
 		protected void OnCheckActionActivated (object sender, EventArgs e)
@@ -39,8 +55,8 @@ namespace Cheque.GTK
 
 		protected void OnCustomerActionActivated (object sender, EventArgs e)
 		{
-			//AddCustomerDialog addCustomerDialog = new AddCustomerDialog ();
-			//addCustomerDialog.Show ();
+			Dialogs.AddCustomerDialog addCustomerDialog = new Dialogs.AddCustomerDialog ();
+			addCustomerDialog.Show ();
 		}
 
 		protected void OnChecksActionActivated (object sender, EventArgs e)
@@ -51,6 +67,12 @@ namespace Cheque.GTK
 			Tables.ReportCheckTable reportTable = new Tables.ReportCheckTable ();
 			mainFrame.Add (reportTable);
 			ShowAll ();
+		}
+
+		protected void OnPasswordActionActivated (object sender, EventArgs e)
+		{
+			Dialogs.ChangePassword passwdDialog = new Cheque.GTK.Dialogs.ChangePassword ();
+			passwdDialog.Show ();
 		}
 	}
 

@@ -73,6 +73,17 @@ namespace Cheque.DAL
 			return DL.Database.DeleteItem<CheckClass> (check);
 		}
 		#endregion
+		#region Password
+		public static int SavePassword (BL.Password.Password passwd)
+		{
+			return DL.Database.SaveItem<BL.Password.Password> (passwd);
+		}
+
+		public static BL.Password.Password GetPassword ()
+		{
+			return DL.Database.GetItem<BL.Password.Password> (1);
+		}
+		#endregion
 	}
 }
 
