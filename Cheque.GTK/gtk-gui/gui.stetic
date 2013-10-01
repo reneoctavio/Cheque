@@ -245,7 +245,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Cheque.GTK.Dialogs.CheckNotebook" design-size="470 352">
+  <widget class="Gtk.Window" id="Cheque.GTK.Dialogs.CheckNotebook" design-size="475 352">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Propiedades do Cheque</property>
     <property name="WindowPosition">Center</property>
@@ -270,7 +270,13 @@
           </packing>
         </child>
         <child>
-          <placeholder />
+          <widget class="Cheque.GTK.Dialogs.NotebookPage.CustomerInfo" id="customerinfo1">
+            <property name="MemberName" />
+            <property name="Events">ButtonPressMask</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+          </packing>
         </child>
         <child>
           <widget class="Gtk.Label" id="lblCustomer">
@@ -1162,6 +1168,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes">Todos</property>
+                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
@@ -1610,6 +1617,116 @@
           </widget>
           <packing>
             <property name="Position">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="Cheque.GTK.Dialogs.NotebookPage.CustomerInfo" design-size="473 160">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.VBox" id="vbox3">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <child>
+          <widget class="Gtk.Label" id="lblName">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Nome</property>
+            <property name="UseMarkup">True</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lbl_ID">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">ID</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HSeparator" id="hseparator1">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblTotal">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Este cliente tem # cheques cadastrados no total de R$ 0,00.</property>
+          </widget>
+          <packing>
+            <property name="Position">3</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblOverdue">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Este cliente está inadimplente, com # cheques não pagos na data de vencimento.</property>
+          </widget>
+          <packing>
+            <property name="Position">4</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblPaidDue">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Este cliente paga #% de seus cheques até sua data de vencimento.</property>
+          </widget>
+          <packing>
+            <property name="Position">5</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblNotDue">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Este cliente tem ainda # cheques a vencer, totalizando: R$ 0,00</property>
+          </widget>
+          <packing>
+            <property name="Position">6</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="btnClose">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Fechar</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="OnBtnCloseClicked" />
+          </widget>
+          <packing>
+            <property name="Position">7</property>
+            <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

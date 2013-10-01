@@ -246,6 +246,7 @@ namespace Cheque.GTK.Tables
 			this.radioBtnAll = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Todos"));
 			this.radioBtnAll.CanFocus = true;
 			this.radioBtnAll.Name = "radioBtnAll";
+			this.radioBtnAll.Active = true;
 			this.radioBtnAll.DrawIndicator = true;
 			this.radioBtnAll.UseUnderline = true;
 			this.radioBtnAll.Group = new global::GLib.SList (global::System.IntPtr.Zero);

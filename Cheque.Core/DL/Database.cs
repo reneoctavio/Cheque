@@ -224,10 +224,29 @@ namespace Cheque.DL
 		public static Customer GetCustomer (string id)
 		{
 			lock (locker) {
-				return (from i in me.Table<Customer> ()
+				Customer customer = (from i in me.Table<Customer> ()
 				        where (i.Identity == id)
 				        select i).FirstOrDefault ();
 
+				if (customer != null) {
+					customer.AllChecks = (from chk in me.Table<CheckClass> ()
+					                      where chk.CustomerID.Equals (customer.Identity)
+					                      select chk).ToList (); 
+					customer.PaidChecks = (from chk in me.Table<CheckClass> ()
+					                       where (chk.CustomerID.Equals (customer.Identity) && (chk.IsCashed))
+					                       select chk).ToList (); 
+
+					customer.OverdueChecks = (from chk in me.Table<CheckClass> ()
+					                         where (chk.CustomerID.Equals (customer.Identity) && (chk.IsCashed == false))
+					                         select chk).ToList (); 
+					customer.PaidOverdueChecks = (from chk in me.Table<CheckClass> ()
+					                          where (chk.CustomerID.Equals (customer.Identity) && (chk.CashedOverdue))
+					                          select chk).ToList (); 
+					customer.NotDueChecks = (from chk in me.Table<CheckClass> ()
+					                              where (chk.CustomerID.Equals (customer.Identity) && (chk.DueDate > DateTime.Now))
+					                              select chk).ToList (); 
+				}
+				return customer;
 			}
 		}
 	}

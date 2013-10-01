@@ -81,6 +81,8 @@
     <Compile Include="gtk-gui\Cheque.GTK.Dialogs.RequestPassword.cs" />
     <Compile Include="Screens\Dialogs\PasswordDialogs\ChangePassword.cs" />
     <Compile Include="gtk-gui\Cheque.GTK.Dialogs.ChangePassword.cs" />
+    <Compile Include="Screens\Dialogs\CheckDialogs\CustomerInfo.cs" />
+    <Compile Include="gtk-gui\Cheque.GTK.Dialogs.NotebookPage.CustomerInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

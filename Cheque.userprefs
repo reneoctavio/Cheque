@@ -1,6 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cheque.GTK/Screens/Dialogs/CheckDialogs/CheckNotebook.cs">
+    <Files>
+      <File FileName="Cheque.GTK/Screens/Dialogs/CheckDialogs/CheckNotebook.cs" Line="13" Column="25" />
+      <File FileName="Cheque.Core/DAL/DataManager.cs" Line="60" Column="46" />
+      <File FileName="Cheque.Core/BL/Customer.cs" Line="86" Column="27" />
+      <File FileName="Cheque.Core/DL/Database.cs" Line="227" Column="56" />
+      <File FileName="Cheque.GTK/Screens/Dialogs/CheckDialogs/CustomerInfo.cs" Line="51" Column="15" />
+      <File FileName="Cheque.GTK/Screens/Dialogs/CheckDialogs/CheckInfo.cs" Line="70" Column="59" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

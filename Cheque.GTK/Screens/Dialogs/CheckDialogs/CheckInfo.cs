@@ -74,7 +74,7 @@ namespace Cheque.GTK.Dialogs.NotebookPage
 				if (check.IsCashed) {
 					entryCashDate.Text = check.CashDate.ToShortDateString ();
 					if (!checkBtnCashed.Active)
-						checkBtnCashed.Activate ();
+						checkBtnCashed.Active = true;
 				} else {
 					entryCashDate.Text = DateTime.Now.ToShortDateString ();
 					if (checkBtnCashed.Active)
@@ -82,7 +82,7 @@ namespace Cheque.GTK.Dialogs.NotebookPage
 				}
 				if (check.CashedOverdue) {
 					if (!checkBtnOverdue.Active)
-						checkBtnOverdue.Activate ();
+						checkBtnOverdue.Active = true;
 				} else {
 					if (checkBtnOverdue.Active)
 						checkBtnOverdue.Active = false;

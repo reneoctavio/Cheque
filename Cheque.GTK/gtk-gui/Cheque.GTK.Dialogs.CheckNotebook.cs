@@ -7,6 +7,7 @@ namespace Cheque.GTK.Dialogs
 		private global::Gtk.Notebook notebook1;
 		private global::Cheque.GTK.Dialogs.NotebookPage.CheckInfo checkinfo;
 		private global::Gtk.Label lblCheck;
+		private global::Cheque.GTK.Dialogs.NotebookPage.CustomerInfo customerinfo1;
 		private global::Gtk.Label lblCustomer;
 		private global::Gtk.Label lblBank1;
 		private global::Gtk.Label lblBranch1;
@@ -34,14 +35,18 @@ namespace Cheque.GTK.Dialogs
 			this.lblCheck.LabelProp = global::Mono.Unix.Catalog.GetString ("Cheque");
 			this.notebook1.SetTabLabel (this.checkinfo, this.lblCheck);
 			this.lblCheck.ShowAll ();
+			// Container child notebook1.Gtk.Notebook+NotebookChild
+			this.customerinfo1 = new global::Cheque.GTK.Dialogs.NotebookPage.CustomerInfo ();
+			this.customerinfo1.Events = ((global::Gdk.EventMask)(256));
+			this.customerinfo1.Name = "customerinfo1";
+			this.notebook1.Add (this.customerinfo1);
+			global::Gtk.Notebook.NotebookChild w2 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.customerinfo1]));
+			w2.Position = 1;
 			// Notebook tab
-			global::Gtk.Label w2 = new global::Gtk.Label ();
-			w2.Visible = true;
-			this.notebook1.Add (w2);
 			this.lblCustomer = new global::Gtk.Label ();
 			this.lblCustomer.Name = "lblCustomer";
 			this.lblCustomer.LabelProp = global::Mono.Unix.Catalog.GetString ("Cliente");
-			this.notebook1.SetTabLabel (w2, this.lblCustomer);
+			this.notebook1.SetTabLabel (this.customerinfo1, this.lblCustomer);
 			this.lblCustomer.ShowAll ();
 			// Notebook tab
 			global::Gtk.Label w3 = new global::Gtk.Label ();
@@ -65,7 +70,7 @@ namespace Cheque.GTK.Dialogs
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 470;
+			this.DefaultWidth = 475;
 			this.DefaultHeight = 352;
 			this.Show ();
 		}

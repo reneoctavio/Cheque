@@ -10,7 +10,18 @@ namespace Cheque.GTK.Dialogs
 			this.Build ();
 			notebook1.PrevPage ();
 			checkinfo.UpdateInfo (check);
+
+			checkinfo.ChangedCheck += (object sender, EventArgs e) => {
+				customerinfo1.customer = DAL.DataManager.GetCustomer (check.CustomerID);
+				customerinfo1.UpdateInfo ();
+				customerinfo1.ShowAll ();
+			};
+
 			checkinfo.ShowAll ();
+
+			customerinfo1.customer = DAL.DataManager.GetCustomer (check.CustomerID);
+			customerinfo1.UpdateInfo ();
+			customerinfo1.ShowAll ();
 		}
 
 		public NotebookPage.CheckInfo GetCheckInfo ()
