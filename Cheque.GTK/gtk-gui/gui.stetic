@@ -253,7 +253,7 @@
       <widget class="Gtk.Notebook" id="notebook1">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">0</property>
+        <property name="CurrentPage">2</property>
         <child>
           <widget class="Cheque.GTK.Dialogs.NotebookPage.CheckInfo" id="checkinfo">
             <property name="MemberName" />
@@ -288,19 +288,13 @@
           </packing>
         </child>
         <child>
-          <placeholder />
-        </child>
-        <child>
-          <widget class="Gtk.Label" id="lblBank1">
+          <widget class="Cheque.GTK.Dialogs.NotebookPage.BranchInfo" id="branchinfo1">
             <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">Banco</property>
+            <property name="Events">ButtonPressMask</property>
           </widget>
           <packing>
-            <property name="type">tab</property>
+            <property name="Position">2</property>
           </packing>
-        </child>
-        <child>
-          <placeholder />
         </child>
         <child>
           <widget class="Gtk.Label" id="lblBranch1">
@@ -1727,6 +1721,152 @@
           <packing>
             <property name="Position">7</property>
             <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="Cheque.GTK.Dialogs.NotebookPage.BranchInfo" design-size="300 227">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.VBox" id="vbox2">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <child>
+          <widget class="Gtk.Label" id="lblBankName">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Banco</property>
+            <property name="UseMarkup">True</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblFullBankName">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Banco S.A.</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HSeparator" id="hseparator1">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblBranchName">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Ag. Esquina</property>
+          </widget>
+          <packing>
+            <property name="Position">3</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblBranchCNPJ">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">00.000.000/0000-00</property>
+          </widget>
+          <packing>
+            <property name="Position">4</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HSeparator" id="hseparator2">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="Position">5</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblAddress">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Avenida Brasil, 2908
+Centro
+Rio de Janeiro - RJ
+00.000-000</property>
+          </widget>
+          <packing>
+            <property name="Position">6</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HSeparator" id="hseparator3">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="Position">7</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="lblPhone">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">+55 (00) 0000-0000</property>
+          </widget>
+          <packing>
+            <property name="Position">8</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HSeparator" id="hseparator4">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="Position">9</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="btnClose">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Fechar</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="OnBtnCloseClicked" />
+          </widget>
+          <packing>
+            <property name="Position">10</property>
+            <property name="AutoSize">False</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

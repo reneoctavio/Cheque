@@ -9,7 +9,7 @@ namespace Cheque.GTK.Dialogs
 		private global::Gtk.Label lblCheck;
 		private global::Cheque.GTK.Dialogs.NotebookPage.CustomerInfo customerinfo1;
 		private global::Gtk.Label lblCustomer;
-		private global::Gtk.Label lblBank1;
+		private global::Cheque.GTK.Dialogs.NotebookPage.BranchInfo branchinfo1;
 		private global::Gtk.Label lblBranch1;
 
 		protected virtual void Build ()
@@ -22,8 +22,7 @@ namespace Cheque.GTK.Dialogs
 			// Container child Cheque.GTK.Dialogs.CheckNotebook.Gtk.Container+ContainerChild
 			this.notebook1 = new global::Gtk.Notebook ();
 			this.notebook1.CanFocus = true;
-			this.notebook1.Name = "notebook1";
-			this.notebook1.CurrentPage = 0;
+			this.notebook1.CurrentPage = 2;
 			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.checkinfo = new global::Cheque.GTK.Dialogs.NotebookPage.CheckInfo ();
 			this.checkinfo.Events = ((global::Gdk.EventMask)(256));
@@ -48,23 +47,18 @@ namespace Cheque.GTK.Dialogs
 			this.lblCustomer.LabelProp = global::Mono.Unix.Catalog.GetString ("Cliente");
 			this.notebook1.SetTabLabel (this.customerinfo1, this.lblCustomer);
 			this.lblCustomer.ShowAll ();
+			// Container child notebook1.Gtk.Notebook+NotebookChild
+			this.branchinfo1 = new global::Cheque.GTK.Dialogs.NotebookPage.BranchInfo ();
+			this.branchinfo1.Events = ((global::Gdk.EventMask)(256));
+			this.branchinfo1.Name = "branchinfo1";
+			this.notebook1.Add (this.branchinfo1);
+			global::Gtk.Notebook.NotebookChild w3 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.branchinfo1]));
+			w3.Position = 2;
 			// Notebook tab
-			global::Gtk.Label w3 = new global::Gtk.Label ();
-			w3.Visible = true;
-			this.notebook1.Add (w3);
-			this.lblBank1 = new global::Gtk.Label ();
-			this.lblBank1.Name = "lblBank1";
-			this.lblBank1.LabelProp = global::Mono.Unix.Catalog.GetString ("Banco");
-			this.notebook1.SetTabLabel (w3, this.lblBank1);
-			this.lblBank1.ShowAll ();
-			// Notebook tab
-			global::Gtk.Label w4 = new global::Gtk.Label ();
-			w4.Visible = true;
-			this.notebook1.Add (w4);
 			this.lblBranch1 = new global::Gtk.Label ();
 			this.lblBranch1.Name = "lblBranch1";
 			this.lblBranch1.LabelProp = global::Mono.Unix.Catalog.GetString ("Agência");
-			this.notebook1.SetTabLabel (w4, this.lblBranch1);
+			this.notebook1.SetTabLabel (this.branchinfo1, this.lblBranch1);
 			this.lblBranch1.ShowAll ();
 			this.Add (this.notebook1);
 			if ((this.Child != null)) {

@@ -6,10 +6,8 @@ namespace Cheque.BL
 {
 	public partial class Branch : Contracts.BusinessEntityBase
 	{
-		[Indexed(Name = "ListingBranch", Order = 2, Unique = true)]
 		public string BranchNumber { get; set; }
 
-		[Indexed(Name = "ListingBranch", Order = 1, Unique = true)]
 		public string BankNumber { get; set; }
 
 		public string PartCNPJ { get; set; }
@@ -20,13 +18,19 @@ namespace Cheque.BL
 
 		public string BranchName { get; set; }
 
+		public string Address { get; set; }
+
+		public string AddressComplement { get; set; }
+
+		public string Neighborhood { get; set; }
+
 		public string CEP { get; set; }
 
 		public string City { get; set; }
 
-		public string State { get; set; }
+		public string UF { get; set; }
 
-		public string DDD { get; set; }
+		public string PhoneCode { get; set; }
 
 		public string Telephone { get; set; }
 		// These are only populated on the client-side, when a single branch is requested

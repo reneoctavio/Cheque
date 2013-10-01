@@ -15,6 +15,10 @@ namespace Cheque.GTK.Dialogs
 				customerinfo1.customer = DAL.DataManager.GetCustomer (check.CustomerID);
 				customerinfo1.UpdateInfo ();
 				customerinfo1.ShowAll ();
+
+				branchinfo1.Branch = DAL.DataManager.GetBranch (check.BranchNumber, check.BankNumber);
+				branchinfo1.UpdateInfo ();
+				branchinfo1.ShowAll ();
 			};
 
 			checkinfo.ShowAll ();
@@ -22,6 +26,11 @@ namespace Cheque.GTK.Dialogs
 			customerinfo1.customer = DAL.DataManager.GetCustomer (check.CustomerID);
 			customerinfo1.UpdateInfo ();
 			customerinfo1.ShowAll ();
+
+			branchinfo1.Bank = DAL.DataManager.GetBank (check.BankNumber);
+			branchinfo1.Branch = DAL.DataManager.GetBranch (check.BranchNumber, check.BankNumber);
+			branchinfo1.UpdateInfo ();
+			branchinfo1.ShowAll ();
 		}
 
 		public NotebookPage.CheckInfo GetCheckInfo ()

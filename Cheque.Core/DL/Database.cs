@@ -149,6 +149,14 @@ namespace Cheque.DL
 		/// <param name="bankNumber">Bank number.</param>
 		public static Branch GetBranch (string branchNumber, string bankNumber)
 		{
+			if ((branchNumber == null) || (branchNumber == "")) {
+				return null;
+			}
+
+			if ((bankNumber == null) || (bankNumber == "")) {
+				return null;
+			}
+
 			lock (locker) {
 				// Find branch in the database
 				Branch branch = (from bch in me.Table<Branch> ()
